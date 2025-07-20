@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // Check if this path is correct in your App.jsx
 import { portfolioAPI, usePortfolioData, useContactForm } from './services/portfolioApi';
+import portfolio from  './Portfolio.png'
 import { 
   ChevronRight,
   Github, 
@@ -603,7 +604,8 @@ const Portfolio = () => {
                     <h3 class="section-title">👨‍💻 PROFILE</h3>
                     <div class="profile-section">
                         <div class="profile-text">
-                            ${personalInfo?.bio || 'Passionate Developer with expertise in React.js, JavaScript, and modern web development. Skilled in building responsive, user-friendly, and high-performance web applications. Currently pursuing B.E. in Computer Science and Engineering at Hindusthan College of Engineering and Technology.'}
+                            ${personalInfo?.bio || `I'm a Passionate Full Stack Developer with strong expertise in React.js, JavaScript, and Python. I specialize in building modern, responsive, and high-performance web applications that offer great user experiences. My full-stack projects combine React.js on the frontend with FastAPI or Django on the backend, creating scalable and efficient solutions. Currently pursuing a B.E. in Computer Science and Engineering at Hindusthan College of Engineering and Technology, I continuously learn and apply new technologies through internships and real-world projects. I am also experienced in UI/UX tools like Figma, using them to design clean and intuitive user interfaces.`}
+
                         </div>
                         <div class="feature-list" style="margin-top: 8px;">
                             <div class="feature-item">
@@ -777,15 +779,7 @@ const Portfolio = () => {
                 <h2 className="text-2xl font-bold">Resume</h2>
               </div>
               <div className="flex items-center gap-2">
-                <motion.button
-                  onClick={downloadResume}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  <Download className="w-4 h-4" />
-                  Download PDF
-                </motion.button>
+                
                 <motion.button
                   onClick={() => setShowResume(false)}
                   whileHover={{ scale: 1.1 }}
@@ -904,7 +898,8 @@ const Portfolio = () => {
                       PROFILE
                     </h3>
                     <p className="text-sm leading-relaxed text-gray-700">
-                      {personalInfo?.bio || 'Passionate Developer with expertise in React.js, JavaScript, and modern web development. Skilled in building responsive, user-friendly, and high-performance web applications. Currently pursuing B.E. in Computer Science and Engineering at Hindusthan College of Engineering and Technology.'}
+                    {personalInfo?.bio || "I'm a Passionate Full Stack Developer with strong expertise in React.js, JavaScript, and Python. I specialize in building modern, responsive, and high-performance web applications that deliver excellent user experiences. My full-stack projects often combine React.js on the frontend with FastAPI or Django on the backend, enabling scalable and efficient solutions. I'm currently pursuing a B.E. in Computer Science and Engineering at Hindusthan College of Engineering and Technology. Beyond development, I’m also skilled in UI/UX design using tools like Figma, allowing me to craft clean, intuitive, and user-centered interfaces. I constantly expand my skill set through internships, hands-on projects, and continuous learning."}
+
                     </p>
                   </div>
 
@@ -1284,7 +1279,7 @@ const Portfolio = () => {
                     <div className={`w-full h-full rounded-full overflow-hidden ${isDarkMode ? 'bg-gray-900' : 'bg-white'} p-2`}>
                       <div className="w-full h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white">
                         <div className="text-6xl font-bold">
-                          {personalInfo?.name ? personalInfo.name.split(' ').map(n => n[0]).join('') : 'AG'}
+                          <img src={portfolio} alt='portfolio' />
                         </div>
                       </div>
                     </div>
@@ -1357,38 +1352,7 @@ const Portfolio = () => {
                   {personalInfo?.bio || 'I\'m a Computer Science student passionate about building innovative web applications. With expertise in React.js, JavaScript, Python, and modern web technologies, I create user-friendly digital experiences.'}
                 </motion.p>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                  viewport={{ once: true }}
-                  className="flex items-center space-x-6 pt-8"
-                >
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-blue-400">
-                      {stats?.years_experience || '2+'}
-                    </div>
-                    <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Years Experience
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-purple-400">
-                      {stats?.projects_completed || '15+'}
-                    </div>
-                    <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Projects Done
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl font-bold text-green-400">
-                      {stats?.client_satisfaction || '100%'}
-                    </div>
-                    <div className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Client Satisfaction
-                    </div>
-                  </div>
-                </motion.div>
+               
               </div>
             </motion.div>
 
@@ -1474,28 +1438,6 @@ const Portfolio = () => {
                 </div>
               </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                viewport={{ once: true }}
-                className={`rounded-xl p-6 ${isDarkMode ? 'bg-gray-800' : 'bg-blue-50'}`}
-              >
-                <h4 className={`text-xl font-semibold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  Let's Work Together
-                </h4>
-                <p className={`mb-6 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  I'm always excited to work on new projects and collaborate with amazing people.
-                </p>
-                <motion.button
-                  onClick={() => scrollToSection('contact')}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-lg font-medium hover:shadow-lg transition-all duration-300"
-                >
-                  Get In Touch
-                </motion.button>
-              </motion.div>
             </motion.div>
           </div>
         </div>
