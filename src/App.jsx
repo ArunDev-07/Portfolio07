@@ -1,49 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-// Check if this path is correct in your App.jsx
-import { portfolioAPI, usePortfolioData, useContactForm } from './services/portfolioApi';
-import portfolio from  './Portfolio.png'
-import { 
-  ChevronRight,
-  Github, 
-  Linkedin, 
-  Mail, 
-  Phone, 
-  MapPin,
-  ExternalLink,
-  Code2,
-  Database,
-  Globe,
-  Server,
-  Calendar,
-  GraduationCap,
-  Briefcase,
-  Send,
-  ArrowRight,
-  User,
-  Star,
-  Award,
-  Target,
-  Zap,
-  X,
-  FileText,
-  Building,
-  Clock,
-  CheckCircle,
-  Circle,
-  Monitor,
-  Smartphone,
-  Layers,
-  Cpu,
-  Sparkles,
-  Download,
-  Eye,
-  Menu,
-  ChevronDown,
-  Play,
-  Pause,
-  Volume2,
-  VolumeX
+
+import usePortfolioData from './hook/usePortfolioData';
+import useContactForm from './hook/useContactForm';
+
+import portfolio from './Portfolio.png';
+
+import {
+  ChevronRight, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Code2, Database, Globe, Server,
+  Calendar, GraduationCap, Briefcase, Send, ArrowRight, User, Star, Award, Target, Zap, X, FileText,
+  Building, Clock, CheckCircle, Circle, Monitor, Smartphone, Layers, Cpu, Sparkles, Download, Eye,
+  Menu, ChevronDown, Play, Pause, Volume2, VolumeX
 } from 'lucide-react';
 
 const Portfolio = () => {
@@ -52,23 +19,17 @@ const Portfolio = () => {
   const [openFaq, setOpenFaq] = useState(null);
   const [showResume, setShowResume] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [name, setName] = useState('');
+const [email, setEmail] = useState('');
+const [message, setMessage] = useState('');
+const [formStatus, setFormStatus] = useState(''); // Add this line
+
+
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isScrolling, setIsScrolling] = useState(false);
 
-  // ==================== API DATA ====================
-  // Use the custom hook to fetch all portfolio data
-  const { data, loading: apiLoading, error: apiError, refetch } = usePortfolioData();
-  
-  // Use the custom hook for contact form
-  const { 
-    formData, 
-    status: formStatus, 
-    isSubmitting, 
-    handleChange: handleInputChange, 
-    handleSubmit: handleFormSubmit 
-  } = useContactForm();
+  const { portfolioData, loading: apiLoading } = usePortfolioData();
 
-  // Extract data from API response
   const {
     personalInfo,
     projects,
@@ -77,118 +38,132 @@ const Portfolio = () => {
     services,
     faqs,
     stats
-  } = data;
+  } = portfolioData || {};
 
-  // ==================== LOADING STATE ====================
+  const {
+    formData,
+    status,
+    isSubmitting,
+    handleChange,
+    handleSubmit
+  } = useContactForm();
+
+  const handleFormSubmit = (e) => {
+  e.preventDefault();
+  // TODO: Add form logic here
+  console.log("Form submitted");
+};
+
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: value,
+  }));
+};
+
+
+
+
+
   useEffect(() => {
-    // Set loading based on API loading state
     if (!apiLoading) {
-      setTimeout(() => setIsLoading(false), 1000);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     }
   }, [apiLoading]);
 
-  // Scroll to section function - FIXED
   const scrollToSection = (sectionId) => {
-    console.log(`Scrolling to section: ${sectionId}`);
-    
-    // Close mobile menu immediately
     setMobileMenuOpen(false);
-    
-    // Set active section immediately for instant feedback
     setActiveSection(sectionId);
-    
-    // Prevent scroll detection interference
     setIsScrolling(true);
-    
-    // Small delay to allow menu to close
+
     setTimeout(() => {
       const element = document.getElementById(sectionId);
       if (element) {
         const navbar = document.querySelector('nav');
         const navbarHeight = navbar ? navbar.offsetHeight : 80;
-        
+
         let targetPosition;
         if (sectionId === 'home') {
           targetPosition = 0;
         } else {
           targetPosition = element.offsetTop - navbarHeight - 10;
         }
-        
-        console.log(`Scrolling to position: ${targetPosition}`);
-        
+
         window.scrollTo({
           top: Math.max(0, targetPosition),
           behavior: 'smooth'
         });
       }
-      
-      // Re-enable scroll detection after scroll completes
+
       setTimeout(() => {
         setIsScrolling(false);
       }, 1000);
     }, 100);
   };
 
-  // Scroll detection - FIXED
   useEffect(() => {
     const handleScroll = () => {
       if (isScrolling) return;
-      
-      const sections = ['home', 'about', 'services', 'portfolio', 'experience', 'contact'];
+
+      const sections = [
+        'home',
+        'about',
+        'services',
+        'portfolio',
+        'experience',
+        'contact'
+      ];
       const navbar = document.querySelector('nav');
       const navbarHeight = navbar ? navbar.offsetHeight : 80;
       const scrollY = window.scrollY;
-      
+
       let currentSection = 'home';
-      
-      // Special handling for very top
+
       if (scrollY < 100) {
         currentSection = 'home';
-      }
-      // Special handling for very bottom
-      else if (scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100) {
+      } else if (
+        scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 100
+      ) {
         currentSection = 'contact';
-      }
-      // Check each section
-      else {
+      } else {
         for (const sectionId of sections) {
           const element = document.getElementById(sectionId);
           if (element) {
             const elementTop = element.offsetTop;
             const elementBottom = elementTop + element.offsetHeight;
-            
-            // Check if we're in this section
-            if (scrollY + navbarHeight + 50 >= elementTop && scrollY + navbarHeight + 50 < elementBottom) {
+
+            if (
+              scrollY + navbarHeight + 50 >= elementTop &&
+              scrollY + navbarHeight + 50 < elementBottom
+            ) {
               currentSection = sectionId;
               break;
             }
           }
         }
       }
-      
+
       setActiveSection(currentSection);
     };
 
-    // Initial check
     handleScroll();
-    
-    // Add scroll listener
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isScrolling]);
 
-  // Toggle theme
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };
-
-  // Download resume function - Updated to use API
   const downloadResume = async () => {
     try {
       await portfolioAPI.downloadResume();
     } catch (error) {
       console.error('Error downloading resume:', error);
-      // Fallback to the old method if API fails
       const resumeWindow = window.open('', '_blank');
       
       const resumeHTML = `
@@ -704,28 +679,7 @@ const Portfolio = () => {
   ];
 
   // ==================== ERROR STATE ====================
-  if (apiError) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center">
-        <div className="text-center text-white p-8">
-          <h2 className="text-2xl font-bold mb-4">⚠️ API Connection Error</h2>
-          <p className="text-gray-400 mb-6">{apiError}</p>
-          <div className="space-y-4">
-            <button
-              onClick={refetch}
-              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-medium transition-colors"
-            >
-              🔄 Try Again
-            </button>
-            <p className="text-sm text-gray-500">
-              Make sure your FastAPI server is running on port 8000
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
+  
   // ==================== LOADING SCREEN ====================
   if (isLoading || apiLoading) {
     return (

@@ -3,9 +3,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react'; // 
 
 // API Configuration
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://your-backend-url.com/api'  // Replace with your deployed backend URL
-  : 'http://localhost:8000/api';        // Local development
+      // Local development
+const API_BASE_URL = "https://portfolio-backend-8-lw86.onrender.com";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -542,6 +541,37 @@ export const useContactForm = () => {
     handleChange,
     handleSubmit,
     setFormData
+  };
+};
+
+
+export const fetchAllData = async () => {
+  const [
+    personalInfo,
+    projects,
+    skills,
+    experiences,
+    services,
+    faqs,
+    stats
+  ] = await Promise.all([
+    portfolioAPI.getPersonalInfo(),
+    portfolioAPI.getProjects(),
+    portfolioAPI.getSkills(),
+    portfolioAPI.getExperiences(),
+    portfolioAPI.getServices(),
+    portfolioAPI.getFAQ(),
+    portfolioAPI.getStats()
+  ]);
+
+  return {
+    personalInfo,
+    projects,
+    skills,
+    experiences,
+    services,
+    faqs,
+    stats
   };
 };
 
