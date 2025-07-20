@@ -1359,7 +1359,9 @@ const handleInputChange = (e) => {
                       { name: 'HTML', level: 95 },
                       { name: 'CSS', level: 92 },
                       { name: 'Python', level: 82 },
-                      { name: 'FastAPI', level: 78 }
+                      { name: 'FastAPI', level: 78 },
+                      {name : 'Mysql' , level : 80}, 
+                      {name: 'Figma' , level : 70}
                     ].map((skill, index) => (
                       <motion.div 
                         key={skill.name} 
