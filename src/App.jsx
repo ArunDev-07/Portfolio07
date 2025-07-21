@@ -20,6 +20,7 @@ const Portfolio = () => {
   const [showResume, setShowResume] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [name, setName] = useState('');
+ 
 const [email, setEmail] = useState('');
 const [message, setMessage] = useState('');
 const [formStatus, setFormStatus] = useState(''); // Add this line
@@ -144,6 +145,16 @@ const {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isScrolling]);
+   
+useEffect(() => {
+  if (formstatus=='success') {
+    const timer = setTimeout(() => {
+      setFormStatus(null);
+    }, 3000); // 3 seconds
+
+    return () => clearTimeout(timer); // cleanup
+  }
+}, [formstatus]);
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
@@ -522,7 +533,7 @@ const {
                     <div class="skills-section">
                         <div class="skill-category">
                             <h4>Frontend:</h4>
-                            <p>HTML, CSS, JavaScript, TypeScript, Tailwind CSS, React JS</p>
+                            <p>HTML, CSS, JavaScript, TypeScript, Tailwind CSS, React JS,Python</p>
                         </div>
                         <div class="skill-category">
                             <h4>Backend:</h4>
@@ -722,6 +733,15 @@ const {
                 <h2 className="text-2xl font-bold">Resume</h2>
               </div>
               <div className="flex items-center gap-2">
+               <a
+                  href="/resume.pdf" // path inside public folder
+                  target="_blank"     // open in new tab
+                  rel="noopener noreferrer" // for security
+                  className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow transition"
+                >
+                  Download Resume
+                </a>
+
                 
                 <motion.button
                   onClick={() => setShowResume(false)}
@@ -808,28 +828,69 @@ const {
                         <div>
                           <p className="font-semibold text-blue-600">Frontend:</p>
                           <p className="text-gray-700">HTML, CSS, JavaScript, TypeScript, Tailwind CSS, React JS</p>
+                           <p className="font-semibold text-blue-600">Backend:</p>
+                          <p className="text-gray-700">Python , Fast API</p>
+                           <p className="font-semibold text-blue-600">Database:</p>
+                          <p className="text-gray-700">MySQL</p>
+                           <p className="font-semibold text-blue-600">Tools:</p>
+                          <p className="text-gray-700">Git , Github , Postman , Figma</p>
                         </div>
+                        
+
                       )}
                     </div>
                   </div>
 
                   {/* Languages */}
-                  <div className="bg-gray-50 p-6 rounded-xl">
-                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                      <Globe className="w-5 h-5 text-blue-600" />
-                      LANGUAGES
-                    </h3>
-                    <div className="text-sm space-y-2">
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span>Tamil (Native)</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-green-500" />
-                        <span>English (Professional)</span>
-                      </div>
+                 <div className="bg-gray-50 p-6 rounded-xl">
+                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                    <Globe className="w-5 h-5 text-blue-600" />
+                    LANGUAGES
+                  </h3>
+                  <div className="text-sm space-y-2 mb-6">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Tamil (Native)</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>English (Professional)</span>
                     </div>
                   </div>
+
+                  <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                    <Briefcase className="w-5 h-5 text-blue-600" />
+                    EXPERIENCE
+                  </h3>
+                  <div className="text-sm space-y-2 text-gray-700">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Built responsive websites</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Used React JS & APIs</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Worked with Git & GitHub</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span> Backend with Python</span>
+                    </div>
+                     <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Styled with Tailwind CSS </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Build Figma designs</span>
+                    </div>
+
+                  </div>
+                </div>
+
                 </div>
 
                 {/* Right Column */}
@@ -909,16 +970,44 @@ const {
                           </div>
                         ))
                       ) : (
-                        <div className="bg-gray-50 p-4 rounded-lg">
-                          <div className="flex justify-between items-start mb-2">
-                            <div>
-                              <p className="font-semibold">Full Stack Developer Intern</p>
-                              <p className="text-blue-600">VDart (Trichy)</p>
-                            </div>
-                            <span className="text-sm text-gray-500 bg-green-100 px-2 py-1 rounded">2024 - Present</span>
-                          </div>
-                          <p className="text-sm text-gray-700">Building scalable web applications using React.js and modern web technologies</p>
-                        </div>
+                       <div className="space-y-4">
+  {/* VDart Internship */}
+  <div className="bg-gray-50 p-4 rounded-lg">
+    <div className="flex justify-between items-start mb-2">
+      <div>
+        <p className="font-semibold">Full Stack Developer Intern</p>
+        <p className="text-blue-600">VDart (Trichy)</p>
+      </div>
+      <span className="text-sm text-gray-500 bg-green-100 px-2 py-1 rounded">2025</span>
+    </div>
+    <p className="text-sm text-gray-700">Building scalable web applications using React.js and modern web technologies</p>
+  </div>
+
+  {/* LearnFlu Internship */}
+  <div className="bg-gray-50 p-4 rounded-lg">
+    <div className="flex justify-between items-start mb-2">
+      <div>
+        <p className="font-semibold">Web Development Intern</p>
+        <p className="text-blue-600">LearnFlu</p>
+      </div>
+      <span className="text-sm text-gray-500 bg-green-100 px-2 py-1 rounded">2024</span>
+    </div>
+    <p className="text-sm text-gray-700">Developed responsive websites and interactive UI components using HTML, CSS, JavaScript, and React.js</p>
+  </div>
+
+  {/* Generative AI Workshop */}
+  <div className="bg-gray-50 p-4 rounded-lg">
+    <div className="flex justify-between items-start mb-2">
+      <div>
+        <p className="font-semibold">Generative AI Workshop</p>
+        <p className="text-blue-600">Bangalore</p>
+      </div>
+      <span className="text-sm text-gray-500 bg-green-100 px-2 py-1 rounded">2025</span>
+    </div>
+    <p className="text-sm text-gray-700">Hands-on workshop focused on building AI-powered chatbots using Generative AI technologies</p>
+  </div>
+</div>
+
                       )}
                     </div>
                   </div>

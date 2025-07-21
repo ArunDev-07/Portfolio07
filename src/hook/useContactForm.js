@@ -24,6 +24,9 @@ const useContactForm = () => {
       await axios.post('https://portfolio-backend-8-lw86.onrender.com/contact', formData);
       setStatus('success');
       setFormData({ name: '', email: '', subject :'', message: '' });
+        setTimeout(() => {
+    setStatus(null);
+  }, 3000);
     } catch (err) {
       setStatus('Error sending message');
       console.error(err);
