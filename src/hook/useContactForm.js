@@ -23,7 +23,7 @@ const useContactForm = () => {
     try {
       await axios.post('https://portfolio-backend-8-lw86.onrender.com/contact', formData);
       setStatus('Message sent successfully!');
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', subject :'', message: '' });
     } catch (err) {
       setStatus('Error sending message');
       console.error(err);
