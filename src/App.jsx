@@ -112,7 +112,7 @@ const handleInputChange = (e) => {
         'home',
         'about',
         'services',
-        'portfolio',
+        'Projects',
         'experience',
         'contact'
       ];
@@ -673,7 +673,7 @@ const handleInputChange = (e) => {
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About' },
     { id: 'services', label: 'Services' },
-    { id: 'portfolio', label: 'Portfolio' },
+    { id: 'portfolio', label: 'Projects' },
     { id: 'experience', label: 'Experience' },
     { id: 'contact', label: 'Contact' }
   ];
@@ -1152,7 +1152,7 @@ const handleInputChange = (e) => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                 >
-                  {personalInfo?.bio || 'I am passionate about building exceptional web applications with modern technologies. Specialized in React.js, JavaScript, Python, and creating user-friendly digital experiences.'}
+                  {personalInfo?.bio || 'I am passionate full stack developer with experience in building responsive and user-friendly web applications. I specialize in Python, React.js, JavaScript, and FastAPI. I enjoy creating clean and efficient code for both frontend and backend, and I am always eager to learn new technologies and build real-world projects.'}
                 </motion.p>
 
                 <motion.div
@@ -1303,7 +1303,10 @@ const handleInputChange = (e) => {
                   transition={{ delay: 0.2 }}
                   viewport={{ once: true }}
                 >
-                  {personalInfo?.bio || 'I\'m a Computer Science student passionate about building innovative web applications. With expertise in React.js, JavaScript, Python, and modern web technologies, I create user-friendly digital experiences.'}
+   {personalInfo?.bio || 
+"I'm a Computer Science student passionate about building innovative and impactful web applications. I specialize in React.js, JavaScript, Python, and modern web technologies, and I enjoy creating clean, responsive, and user-friendly digital experiences.I love turning creative ideas into real-world projects and continuously learning new tools and technologies. My goal is to become a skilled full stack developer who can solve real problems through technology.I am currently building full stack projects using React and FastAPI, showcasing my technical skills and creativity. I also have experience creating and consuming REST APIs, managing frontend-backend integration, and working with modern deployment tools.Beyond coding, I focus on writing clean, scalable code and following best practices for performance, security, and maintainability. I'm a fast learner, a team player, and always excited to take on new challenges and internship opportunities where I can grow and contribute meaningfully."
+}
+
                 </motion.p>
 
                
@@ -1360,6 +1363,8 @@ const handleInputChange = (e) => {
                       { name: 'CSS', level: 92 },
                       { name: 'Python', level: 82 },
                       { name: 'FastAPI', level: 78 },
+                      { name: 'Typescript', level: 80 },
+                       { name: 'Tailwind CSS', level: 78 },
                       {name : 'Mysql' , level : 80}, 
                       {name: 'Figma' , level : 70}
                     ].map((skill, index) => (
@@ -1543,7 +1548,7 @@ const handleInputChange = (e) => {
             <div className="flex items-center justify-center space-x-2 mb-4">
               <div className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500" />
               <span className={`text-sm uppercase tracking-wider ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                Portfolio
+              Projects
               </span>
               <div className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500" />
             </div>
@@ -1664,8 +1669,8 @@ const handleInputChange = (e) => {
                   category: 'E-commerce Platform',
                   description: 'Full-featured e-commerce platform with shopping cart, payment integration, and user authentication.',
                   tech: ['JavaScript', 'HTML5', 'CSS3', 'LocalStorage'],
-                  github: 'https://github.com/ArunDev-07',
-                  demo: 'https://arun-amazon-clone.netlify.app',
+                  github: 'https://github.com/ArunDev-07/Amazon-clone',
+                  demo: 'https://amazondev07.netlify.app/amazon',
                   featured: true
                 },
                 {
@@ -1673,19 +1678,30 @@ const handleInputChange = (e) => {
                   category: 'Entertainment Platform',
                   description: 'Interactive movie discovery application with TMDB API integration and search functionality.',
                   tech: ['React JS', 'TMDB API', 'Tailwind CSS'],
-                  github: 'https://github.com/ArunDev-07/Movie-App.git',
-                  demo: 'https://arun-movie-app.netlify.app',
+                  github: 'https://github.com/ArunDev-07/Movie-App',
+                  demo: 'https://movie-app-ten-zeta-96.vercel.app/',
                   featured: true
+                },
+                {
+                  title: 'Portfolio Website',
+                  category: 'Weather Service',
+                  description: 'A modern, responsive portfolio web application built with React (Vite) for the frontend and FastAPI for the backend. The site showcases my projects, skills, resume, and contact functionality.',
+                  tech: ['React JS', 'OpenWeather API', 'Chart.js'],
+                  github: 'https://github.com/ArunDev-07/Portfolio',
+                  demo: 'https://portfolio07-sepia.vercel.app/',
+                  featured: false
                 },
                 {
                   title: 'Weather Forecast App',
                   category: 'Weather Service',
                   description: 'Real-time weather application with location-based forecasting and predictions.',
                   tech: ['React JS', 'OpenWeather API', 'Chart.js'],
-                  github: 'https://github.com/ArunDev-07/Weather-App',
+                  github: 'https://github.com/ArunDev-07/Weather-app',
                   demo: 'https://arun-weather-app.netlify.app',
                   featured: false
                 }
+                
+
               ].map((project, index) => (
                 <motion.div
                   key={project.title}
@@ -1920,7 +1936,7 @@ const handleInputChange = (e) => {
                   title: 'Full Stack Developer Intern',
                   company: 'VDart',
                   location: 'Trichy, Tamil Nadu',
-                  period: '2024 - Present',
+                  period: '2025',
                   description: 'Working as a Full Stack Developer, building scalable web applications using React.js and modern web technologies.',
                   type: 'internship',
                   achievements: [
