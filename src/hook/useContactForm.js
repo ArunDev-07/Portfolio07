@@ -8,7 +8,7 @@ const useContactForm = () => {
     email: '',
     message: ''
   });
-  const [status, setStatus] = useState('');
+  const [formstatus, setStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = e => {
@@ -22,7 +22,7 @@ const useContactForm = () => {
 
     try {
       await axios.post('https://portfolio-backend-8-lw86.onrender.com/contact', formData);
-      setStatus('Message sent successfully!');
+      setStatus('success');
       setFormData({ name: '', email: '', subject :'', message: '' });
     } catch (err) {
       setStatus('Error sending message');
@@ -36,7 +36,7 @@ const useContactForm = () => {
     formData,
     handleChange,
     handleFormSubmit,
-    status,
+    formstatus,
     isSubmitting
   };
 };

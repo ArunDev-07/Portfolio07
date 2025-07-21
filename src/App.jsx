@@ -42,7 +42,7 @@ const [formStatus, setFormStatus] = useState(''); // Add this line
 
 const {
   formData,
-  status,
+  formstatus,
   isSubmitting,
   handleChange,
   handleFormSubmit // ✅ use this, not handleSubmit
@@ -2466,7 +2466,7 @@ const {
                   )}
                 </motion.button>
 
-                {formStatus === 'success' && (
+                {formstatus === 'success' && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -2477,7 +2477,7 @@ const {
                   </motion.div>
                 )}
                 
-                {formStatus === 'error' && (
+                {formstatus === 'error' && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
