@@ -7,7 +7,7 @@ import useContactForm from './hook/useContactForm';
 import portfolio from './Portfolio.png';
 
 import {
-  ChevronRight, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Code2, Database, Globe, Server,
+  ChevronRight, Github, Linkedin, Mail, Phone, MapPin, ExternalLink, Code2, Database, Globe, Server,Instagram,
   Calendar, GraduationCap, Briefcase, Send, ArrowRight, User, Star, Award, Target, Zap, X, FileText,
   Building, Clock, CheckCircle, Circle, Monitor, Smartphone, Layers, Cpu, Sparkles, Download, Eye,
   Menu, ChevronDown, Play, Pause, Volume2, VolumeX
@@ -40,27 +40,16 @@ const [formStatus, setFormStatus] = useState(''); // Add this line
     stats
   } = portfolioData || {};
 
-  const {
-    formData,
-    status,
-    isSubmitting,
-    handleChange,
-    handleSubmit
-  } = useContactForm();
+const {
+  formData,
+  status,
+  isSubmitting,
+  handleChange,
+  handleFormSubmit // ✅ use this, not handleSubmit
+} = useContactForm();
 
-  const handleFormSubmit = (e) => {
-  e.preventDefault();
-  // TODO: Add form logic here
-  console.log("Form submitted");
-};
 
-const handleInputChange = (e) => {
-  const { name, value } = e.target;
-  setFormData((prevData) => ({
-    ...prevData,
-    [name]: value,
-  }));
-};
+  
 
 
 
@@ -1212,6 +1201,16 @@ const handleInputChange = (e) => {
                 >
                   <Mail className="w-6 h-6" />
                 </motion.a>
+                <motion.a
+                  href={personalInfo?.instagram || "https://instagram.com/mr.tamizhan__07"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, y: -5 }}
+                  className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500 transition-all duration-300"
+                >
+                  <Instagram className="w-6 h-6 text-white" />
+                </motion.a>
+
               </motion.div>
             </motion.div>
 
@@ -1686,7 +1685,7 @@ const handleInputChange = (e) => {
                   title: 'Portfolio Website',
                   category: 'Weather Service',
                   description: 'A modern, responsive portfolio web application built with React (Vite) for the frontend and FastAPI for the backend. The site showcases my projects, skills, resume, and contact functionality.',
-                  tech: ['React JS', 'OpenWeather API', 'Chart.js'],
+                  tech: ['React JS', 'FastAPI', 'Tailwind CSS'],
                   github: 'https://github.com/ArunDev-07/Portfolio',
                   demo: 'https://portfolio07-sepia.vercel.app/',
                   featured: false
@@ -2260,6 +2259,21 @@ const handleInputChange = (e) => {
                     </p>
                   </div>
                 </motion.div>
+        
+        <motion.div 
+  className="flex items-center space-x-4"
+  whileHover={{ x: 10 }}
+>
+  <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-yellow-500 rounded-full flex items-center justify-center">
+    <Instagram className="w-6 h-6 text-white" />
+  </div>
+  <div>
+    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Instagram</p>
+    <p className={`font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+      {personalInfo?.instagram || 'mr.tamizhan__07'}
+    </p>
+  </div>
+</motion.div>
 
                 <motion.div 
                   className="flex items-center space-x-4"
@@ -2319,6 +2333,21 @@ const handleInputChange = (e) => {
                   >
                     <Mail className="w-6 h-6" />
                   </motion.a>
+
+        <motion.a
+          href="https://instagram.com/mr.tamizhan__07"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.1, y: -5 }}
+          className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+            isDarkMode 
+              ? 'bg-gray-800 hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500' 
+              : 'bg-gray-200 hover:bg-gradient-to-r hover:from-pink-500 hover:to-yellow-500 hover:text-white'
+          }`}
+        >
+          <Instagram className="w-6 h-6" />
+        </motion.a>
+
                 </div>
               </div>
             </motion.div>
@@ -2344,7 +2373,7 @@ const handleInputChange = (e) => {
                       type="text"
                       name="name"
                       value={formData.name}
-                      onChange={handleInputChange}
+                      onChange={handleChange}
                       required
                       className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
                         isDarkMode 
@@ -2363,7 +2392,7 @@ const handleInputChange = (e) => {
                       type="email"
                       name="email"
                       value={formData.email}
-                      onChange={handleInputChange}
+                      onChange={handleChange}
                       required
                       className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
                         isDarkMode 
@@ -2383,7 +2412,7 @@ const handleInputChange = (e) => {
                     type="text"
                     name="subject"
                     value={formData.subject}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                     required
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors ${
                       isDarkMode 
@@ -2401,7 +2430,7 @@ const handleInputChange = (e) => {
                   <textarea
                     name="message"
                     value={formData.message}
-                    onChange={handleInputChange}
+                    onChange={handleChange}
                     required
                     rows={5}
                     className={`w-full px-4 py-3 rounded-lg border focus:outline-none focus:ring-1 focus:ring-blue-500 transition-colors resize-none ${
@@ -2523,6 +2552,8 @@ const handleInputChange = (e) => {
                 <p>{personalInfo?.location || 'Coimbatore, Tamil Nadu'}</p>
                 <p>{personalInfo?.phone || '+91 7305096778'}</p>
                 <p>{personalInfo?.email || 'arunaakash675@gmail.com'}</p>
+                 <p>{personalInfo?.instagram || 'mr.tamizhan__07'}</p>
+                
               </div>
               <div className="flex space-x-3 mt-4">
                 <a
@@ -2547,6 +2578,15 @@ const handleInputChange = (e) => {
                 >
                   <Mail className="w-5 h-5" />
                 </a>
+                <a
+                  href="https://instagram.com/mr.tamizhan__07"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+
               </div>
             </div>
           </div>
