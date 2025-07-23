@@ -103,7 +103,7 @@ const {
         'about',
         'services',
         'Projects',
-        'experience',
+        'experiences',
         'contact'
       ];
       const navbar = document.querySelector('nav');
@@ -674,7 +674,7 @@ useEffect(() => {
     { id: 'about', label: 'About' },
     { id: 'services', label: 'Services' },
     { id: 'portfolio', label: 'Projects' },
-    { id: 'experience', label: 'Experience' },
+    { id: 'experience', label: 'Experiences' },
     { id: 'contact', label: 'Contact' }
   ];
 
@@ -2047,7 +2047,22 @@ useEffect(() => {
                     'Optimized website performance and user experience',
                     'Collaborated with remote development team'
                   ]
+                },
+                {
+                  title: 'Generative AI Workshop',
+                  company: 'IIS College, Bangalore',
+                  location: 'Bangalore',
+                  period: '2025',
+                  description: 'Attended a hands-on workshop on Generative AI with a focus on chatbot development and deep learning techniques.',
+                  type: 'workshop',
+                  achievements: [
+                    'Learned how to build AI-powered chatbots using large language models',
+                    'Explored deep learning concepts and neural network architectures',
+                    'Worked on mini-projects using tools like ChatGPT and TensorFlow',
+                    'Collaborated with peers and mentors on real-world AI challenges'
+                  ]
                 }
+
               ].map((exp, index) => (
                 <motion.div
                   key={index}
