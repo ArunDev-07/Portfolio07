@@ -734,7 +734,7 @@ useEffect(() => {
               </div>
               <div className="flex items-center gap-2">
                <a
-                  href="/resume.pdf" // path inside public folder
+                  href="/Myresume.pdf" // path inside public folder
                   target="_blank"     // open in new tab
                   rel="noopener noreferrer" // for security
                   className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow transition"
